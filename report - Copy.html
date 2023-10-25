@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Report</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    .wrapper {
+      text-align: center;
+      padding: 20px;
+    }
+    .header {
+      color: white;
+      background-color: #007bff;
+      padding: 20px;
+    }
+    .report-content {
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    .btn1, .btn2 {
+      display: inline-block;
+      margin-right: 10px;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      position: static;
+    }
+    #footer {
+      text-align: center;
+      padding: 10px;
+      color: rgb(14, 13, 13);
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 40px;
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <h1>View Generated Report</h1>
+    </div>
+
+    <div class="report-content">
+      <h2>Generated Report</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Loom Number</th>
+            <th>Fabric Quality</th>
+            <th>Fabric Length</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Table rows will be added dynamically using JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <a href="#" class="btn1" id="downloadBtn">Download Report</a>
+    <button class="btn2" id="printBtn">Print</button>
+
+    <div id="footer">
+      <p>&copy; 2023 Your Company. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    const sampleData = [
+      { loomNumber: 'L001', fabricQuality: 'High', fabricLength: '100 meters' },
+      { loomNumber: 'L002', fabricQuality: 'Medium', fabricLength: '75 meters' },
+      { loomNumber: 'L003', fabricQuality: 'Low', fabricLength: '50 meters' }
+    ];
+
+    function populateTable(data) {
+      const tableBody = document.getElementById('tableBody');
+      tableBody.innerHTML = '';
+
+      data.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.loomNumber}</td>
+          <td>${item.fabricQuality}</td>
+          <td>${item.fabricLength}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    populateTable(sampleData);
+
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.addEventListener('click', () => {
+      const content = 'This is the content of the report that you want to download.';
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'report.txt';
+      link.click();
+    });
+
+    const printBtn = document.getElementById('printBtn');
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+  </script>
+</body>
+
+</html>

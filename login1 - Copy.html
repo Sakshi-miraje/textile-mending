@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url("login.jpg");
+      background-size: cover;
+    }
+
+    .container {
+      width: 250px;
+      margin: auto;
+      margin-top: 65px;
+      padding: 20px;
+      background-color: transparent;
+      border-radius: 20px;
+      box-shadow: -3px -4px 45px rgba(37, 196, 188, 0.993);
+    }
+
+    h5 {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.733);
+      margin-top: 125px;
+    }
+
+    h1 {
+      text-align: center;
+      color: aqua;
+      font-size: 45px;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: aqua;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      color: aqua;
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 93%;
+      background-color: transparent;
+      padding: 8px;
+      color: white;
+      font-weight: bold;
+      border: 1px solid aqua;
+      border-radius: 3px;
+    }
+
+    .form-group input[type="submit"] {
+      background-color: #0c9bfa;
+      width: 70px;
+      margin-left: 90px;
+      color: black;
+      cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #06daf7;
+      box-shadow: -3px -4px 40px rgba(52, 243, 4, 0.932);
+    }
+
+    .form-group .error-message {
+      color: red;
+      font-size: 12px;
+    }
+
+    .form-group .forgot-password {
+      text-align: center;
+      margin-top: 25px;
+      color: white;
+      font-size: 12px;
+    }
+
+    .form-group .forgot-password a {
+      text-decoration: underline;
+      cursor: pointer;
+      color:white;
+    }
+
+    .form-group .forgot-password a:hover {
+      color: aqua;
+      text-decoration: none;
+    }
+
+  </style>
+  <script>
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      if (username === "ADMIN" && password === "1234") {
+        // Redirect to the index page
+        window.location.href = "index.html";
+      } else {
+        // Show an error message
+        var errorElement = document.getElementById("error-message");
+        errorElement.innerHTML = "Invalid credentials. Please try again.";
+      }
+
+      return false; // Prevent form submission
+    }
+
+    function sendPasswordRecoveryEmail() {
+      var email = prompt("Please enter your email address:");
+      if (email) {
+        // Send password recovery email logic here
+        alert("Password recovery email sent to: " + email);
+      }
+    }
+
+  </script>
+</head>
+<body>
+  <h1> MENDING DATA LOGGER </h1>
+
+  <div class="container">
+    <h2>Login</h2>
+    <form onsubmit="return validateForm()">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Login">
+        <div class="error-message" id="error-message"></div>
+        <div class="forgot-password">
+          <a href="" onclick="sendPasswordRecoveryEmail()">Forgot Password?</a>
+        </div>
+      </div>
+    </form>
+  </div>
+  <h5>Proudly created by Samruddhi, Sakshi, Sneha, Sonali | © 2023 </h5>
+</body>
+</html>
